@@ -1,11 +1,19 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Layout } from 'antd';
+import Sider from './layout/Sider'
+
 import './App.css';
 
+const { Header, Content, Footer } = Layout
+
 const App = () => (
-  <div className="App">
-    <Button type="primary">Button</Button>
-  </div>
+  <Layout>
+    <Header>Header</Header>
+    <Layout>
+      <Sider>Sider</Sider>
+      <Content>Content</Content>
+    </Layout>
+  </Layout>
 );
 
 export default App;
