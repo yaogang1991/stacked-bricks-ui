@@ -5,25 +5,28 @@ import { Layout } from 'antd'
 
 import { addBrick, delBrick } from '../redux/actions'
 import Sider from '../components/layout/Sider'
+import Content from '../components/layout/Content'
 import './App.css'
 
-const { Header, Content, Footer } = Layout
+const { Header, Footer } = Layout
 
 class App extends Component {
 
   static propTypes = {
-    bricks: PropTypes.array.isRequired,
+    brickTree: PropTypes.object.isRequired,
     addBrick: PropTypes.func.isRequired,
     delBrick: PropTypes.func.isRequired
   }
 
   render() {
+    const { brickTree, addBrick, delBrick } = this.props
+
     return (
     <Layout>
-      <Header>Header</Header>
+      {/* <Header>Header</Header> */}
       <Layout>
         <Sider>Sider</Sider>
-        <Content>Content</Content>
+        <Content brickTree={brickTree} addBrick={addBrick} delBrick={delBrick} />
       </Layout>
     </Layout>
     )
@@ -31,6 +34,6 @@ class App extends Component {
 }
 
 export default connect(
-  state => ({bricks: state}),
+  state => ({ brickTree: state }),
   {addBrick, delBrick}
 )(App);
