@@ -8,7 +8,7 @@ import Sider from '../components/layout/Sider'
 import Content from '../components/layout/Content'
 import './App.css'
 
-const { Header, Footer } = Layout
+// const { Header, Footer } = Layout
 
 class App extends Component {
 

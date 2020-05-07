@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { CloseCircleOutlined } from '@ant-design/icons'
+// import { CloseCircleOutlined } from '@ant-design/icons'
 
 export default class Brick extends Component {
 
