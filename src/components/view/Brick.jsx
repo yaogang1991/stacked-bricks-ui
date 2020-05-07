@@ -10,12 +10,12 @@ export default class Brick extends Component {
 
   render() {
     const { brick } = this.props
-    const layout = brick.blocks.map((brick, index) => <Brick brick={brick} key={index}/>)
+    const layout = brick.blocks.map((brick, index) => <Brick brick={brick} key={index} />)
     
     switch (brick.name) {
       case 'div':
         return (
-          <div>
+          <div style={brick.style}>
             {/* <CloseCircleOutlined /> */}
             {brick.content}
             {layout}
@@ -23,7 +23,7 @@ export default class Brick extends Component {
         )
       case 'p':
         return (
-          <p>
+          <p  style={brick.style}>
             {/* <CloseCircleOutlined style={{'cursor': 'pointer'}}/> */}
             {brick.content}
             {layout}

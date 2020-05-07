@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Layout } from 'antd'
 
-import { addBrick, delBrick } from '../redux/actions'
+import { addBrick, delBrick, getBrickTree } from '../redux/actions'
+import { TEST_SANDBOX_ID } from '../utils/constant'
 import Sider from '../components/layout/Sider'
 import Content from '../components/layout/Content'
 import './App.css'
@@ -15,7 +16,12 @@ class App extends Component {
   static propTypes = {
     brickTree: PropTypes.object.isRequired,
     addBrick: PropTypes.func.isRequired,
-    delBrick: PropTypes.func.isRequired
+    delBrick: PropTypes.func.isRequired,
+    getBrickTree: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    this.props.getBrickTree(TEST_SANDBOX_ID)
   }
 
   render() {
@@ -35,5 +41,5 @@ class App extends Component {
 
 export default connect(
   state => ({ brickTree: state }),
-  {addBrick, delBrick}
+  {addBrick, delBrick, getBrickTree}
 )(App);
