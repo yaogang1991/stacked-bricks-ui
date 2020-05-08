@@ -6,3 +6,19 @@ export const getBlocks = (sandBoxId) => {
     method: 'get'
   })
 }
+
+export const insertBlock = (data) => {
+  return request({
+    url: 'block',
+    method: 'post',
+    data
+  })
+}
+
+export const updateBlock = (data) => {
+  return request({
+    url: 'block',
+    method: 'put',
+    data
+  })
+}

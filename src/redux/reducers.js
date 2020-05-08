@@ -1,8 +1,10 @@
-import { ADD_BRICK, DEL_BRICK, GET_BRICK_TREE } from './action-types'
+import { combineReducers } from 'redux'
+
+import { ADD_BRICK, DEL_BRICK, GET_BRICK_TREE, CLICK_MENU } from './action-types'
 
 const initBrickTree = { blocks: [] }
 
-export const brickTree = (state = initBrickTree, action) => {
+const brickTree = (state = initBrickTree, action) => {
     switch (action.type) {
         case ADD_BRICK:
             return [...state.blocks, action.data]
@@ -14,3 +16,19 @@ export const brickTree = (state = initBrickTree, action) => {
             return state
     }
 }
+
+const dialog = (state = { visible: false, type: '' }, action) => {
+    switch (action.type) {
+        case CLICK_MENU:
+            console.log('dialog: ' + action.data)
+            return {visible: true, type: action.data}
+        default:
+            console.log('dialog: ' + state)
+            return state
+    }
+}
+
+export default combineReducers({
+    brickTree,
+    dialog
+})

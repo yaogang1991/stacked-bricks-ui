@@ -1,4 +1,4 @@
-import { ADD_BRICK, DEL_BRICK, GET_BRICK_TREE } from './action-types'
+import { ADD_BRICK, DEL_BRICK, GET_BRICK_TREE, CLICK_MENU } from './action-types'
 import { getBlocks } from '../api/block'
 
 export const addBrick = (brick) => ({ type: ADD_BRICK, data: brick })
@@ -13,3 +13,5 @@ export const getBrickTree = (sandboxId) => {
     })
   }
 }
+
+export const clickMenu = (data) => ({ type: CLICK_MENU, data })
