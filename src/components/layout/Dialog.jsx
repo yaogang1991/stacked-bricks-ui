@@ -2,24 +2,24 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Drawer } from 'antd'
 
+import DialogForm from '../view/DialogForm'
+
 export default class Dialog extends Component {
 
   static propTypes = {
-    dialog: PropTypes.object.isRequired
-    // sumbit: PropTypes.func.isRequired,
-    // cancel: PropTypes.func.isRequired
+    dialog: PropTypes.object.isRequired,
+    handleSumbit: PropTypes.func.isRequired
   }
 
   render() {
+    const { dialog, handleSumbit } = this.props
     return (
       <Drawer
-        title="Basic Drawer"
+        title={dialog.type}
         placement="right"
         closable={false}
-        visible={this.props.dialog.visible}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        visible={dialog.visible}>
+          <DialogForm type={dialog.type} handleSumbit={handleSumbit} />
       </Drawer>
     )
   }

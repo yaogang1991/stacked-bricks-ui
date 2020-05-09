@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'antd' 
 // import { CloseCircleOutlined } from '@ant-design/icons'
 
 export default class Brick extends Component {
@@ -29,8 +30,12 @@ export default class Brick extends Component {
             {layout}
           </p>
         )
+      case 'Button':
+        return (
+          <Button>{brick.content}</Button>
+        )
       default:
-        return <div></div>
+        return <div>Default</div>
     }
   }
 }
