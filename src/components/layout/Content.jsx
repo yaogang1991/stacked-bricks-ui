@@ -9,7 +9,6 @@ export default class Content extends Component {
   static propTypes = {
     brickTree: PropTypes.object.isRequired,
     modifyBrick: PropTypes.func.isRequired,
-    delBrick: PropTypes.func.isRequired,
     edit: PropTypes.bool
   }
 

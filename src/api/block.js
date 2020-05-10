@@ -1,8 +1,8 @@
 import request from './request'
 
-export const getBlocks = (sandBoxId) => {
+export const getBlocks = (data) => {
   return request({
-    url: 'block/' + sandBoxId,
+    url: 'block/' + data,
     method: 'get'
   })
 }
@@ -20,5 +20,12 @@ export const updateBlock = (data) => {
     url: 'block',
     method: 'put',
     data
+  })
+}
+
+export const deleteBlock = (data) => {
+  return request({
+    url: 'block/' + data,
+    method: 'delete'
   })
 }

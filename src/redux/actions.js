@@ -1,5 +1,5 @@
 import { ADD_BRICK, DEL_BRICK, GET_BRICK_TREE, SUBMIT_BRICK, EDIT_BRICK, MODIFY_BRICK } from './action-types'
-import { getBlocks, insertBlock, updateBlock } from '../api/block'
+import { getBlocks, insertBlock, updateBlock, deleteBlock } from '../api/block'
 
 const receiveAddBrick = (data) => ({ type: ADD_BRICK, data })
 export const addBrick = (data) => {
@@ -21,7 +21,14 @@ export const submitBrick = (data) => {
 
 export const modifyBrick = (data) => ({ type: MODIFY_BRICK, data })
 
-export const delBrick = (data) => ({ type: DEL_BRICK, data })
+const receiveDelBrick = (data) => ({ type: DEL_BRICK, data })
+export const delBrick = (data) => {
+  return (dispatch) => {
+    deleteBlock(data).then(res => {
+      dispatch(receiveDelBrick(data))
+    })
+  }
+}
 
 const receiveBrickTree = (data) => ({ type: GET_BRICK_TREE, data })
 export const getBrickTree = (sandboxId) => {

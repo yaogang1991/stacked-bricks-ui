@@ -8,18 +8,20 @@ export default class Dialog extends Component {
 
   static propTypes = {
     dialog: PropTypes.object.isRequired,
-    handleSumbit: PropTypes.func.isRequired
+    handleSumbit: PropTypes.func.isRequired,
+    delBrick: PropTypes.func.isRequired,
+    edit: PropTypes.bool
   }
 
   render() {
-    const { dialog, handleSumbit } = this.props
+    const { dialog, edit, handleSumbit, delBrick } = this.props
     return (
       <Drawer
         title={dialog.type}
         placement="right"
         closable={false}
         visible={dialog.visible}>
-          <DialogForm dialog={dialog} handleSumbit={handleSumbit} />
+          <DialogForm dialog={dialog} edit={edit} handleSumbit={handleSumbit} delBrick={delBrick} />
       </Drawer>
     )
   }

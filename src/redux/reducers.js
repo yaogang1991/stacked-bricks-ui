@@ -11,7 +11,11 @@ const brickTree = (state = initBrickTree, action) => {
             state.childs = [...state.childs, action.data.id]
             return state
         case DEL_BRICK:
-            return state.blocks.filter((brick, index) => index !== action.data)
+            let newChildren = state.childs.filter((childId, index) => childId !== action.data)
+            let newBlocks = state.blocks.filter((block, index) => block.id !== action.data)
+            state.childs = newChildren
+            state.blocks = newBlocks
+            return state
         case GET_BRICK_TREE:
             return action.data
         case SUBMIT_BRICK:
@@ -31,7 +35,8 @@ const dialog = (state = { visible: false, type: '', id: '' }, action) => {
             console.log('ADD_BRICK state: ' + JSON.stringify(newState))
             return newState
         case SUBMIT_BRICK:
-            return {visible: false, type: state.type}
+        case DEL_BRICK:
+            return {visible: false}
         default:
             return state
     }

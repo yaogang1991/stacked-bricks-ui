@@ -11,10 +11,11 @@ export default class Sider extends Component {
     brickTree: PropTypes.object.isRequired,
     dialog: PropTypes.object.isRequired,
     addBrick: PropTypes.func.isRequired,
+    delBrick: PropTypes.func.isRequired,
     getBrickTree: PropTypes.func.isRequired,
     handleSumbit: PropTypes.func.isRequired,
     
-    eidt: PropTypes.bool,
+    edit: PropTypes.bool,
     editBrick: PropTypes.func
   }
 
@@ -38,7 +39,7 @@ export default class Sider extends Component {
   }
 
   render() {
-    const { dialog, handleSumbit, edit } = this.props
+    const { dialog, handleSumbit, edit, delBrick } = this.props
     return (
     <Layout.Sider>
       <Menu onClick={this.handleClick}>
@@ -46,7 +47,7 @@ export default class Sider extends Component {
         <Menu.Divider/>
         <Menu.Item key="Edit">Edit</Menu.Item>
       </Menu>
-      <Dialog dialog={dialog} handleSumbit={handleSumbit}/>
+      <Dialog dialog={dialog} edit={edit} handleSumbit={handleSumbit} delBrick={delBrick} />
     </Layout.Sider>
     )
   }

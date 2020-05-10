@@ -51,16 +51,16 @@ class App extends Component {
           brickTree={brickTree} 
           dialog={dialog} 
           addBrick={addBrick} 
+          delBrick={delBrick}
+          editBrick={editBrick}
           getBrickTree={getBrickTree}
           handleSumbit={this.handleSumbit}
-          edit={edit}
-          editBrick={editBrick} >
+          edit={edit} >
             Sider
         </Sider>
         <Content 
           brickTree={brickTree} 
           modifyBrick={modifyBrick} 
-          delBrick={delBrick}
           edit={edit} />
       </Layout>
     </Layout>
