@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Layout } from 'antd'
 
-import { addBrick, delBrick, getBrickTree, modifyBrick } from '../redux/actions'
+import { addBrick, delBrick, getBrickTree, submitBrick, editBrick, modifyBrick } from '../redux/actions'
 import { TEST_SANDBOX_ID } from '../utils/constant'
 import Sider from '../components/layout/Sider'
 import Content from '../components/layout/Content'
@@ -18,9 +18,13 @@ class App extends Component {
     addBrick: PropTypes.func.isRequired,
     delBrick: PropTypes.func.isRequired,
     getBrickTree: PropTypes.func.isRequired,
-    modifyBrick: PropTypes.func.isRequired,
+    submitBrick: PropTypes.func.isRequired,
 
     dialog: PropTypes.object.isRequired,
+
+    edit: PropTypes.bool.isRequired,
+    editBrick: PropTypes.func.isRequired,
+    modifyBrick: PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -28,23 +32,36 @@ class App extends Component {
   }
 
   handleSumbit = (values) => {
-    console.log('handleSumbit v:' + JSON.stringify(values))
-    const {brickTree, modifyBrick} = this.props
-    let brick = brickTree.blocks.pop()
+    const { brickTree, submitBrick, dialog } = this.props
+    let index = brickTree.childs.indexOf(dialog.id)
+    let brick = brickTree.blocks[index]
     brick.content = values.content
-    modifyBrick(brick)
+    submitBrick(brick)
     getBrickTree(TEST_SANDBOX_ID)
   }
 
   render() {
-    const { brickTree, addBrick, delBrick, dialog } = this.props
+    const { brickTree, addBrick, delBrick, dialog, edit, editBrick, getBrickTree, modifyBrick } = this.props
 
     return (
     <Layout>
       {/* <Header>Header</Header> */}
       <Layout>
-        <Sider brickTree={brickTree} dialog={dialog} addBrick={addBrick} handleSumbit={this.handleSumbit}>Sider</Sider>
-        <Content brickTree={brickTree} addBrick={addBrick} delBrick={delBrick} />
+        <Sider 
+          brickTree={brickTree} 
+          dialog={dialog} 
+          addBrick={addBrick} 
+          getBrickTree={getBrickTree}
+          handleSumbit={this.handleSumbit}
+          edit={edit}
+          editBrick={editBrick} >
+            Sider
+        </Sider>
+        <Content 
+          brickTree={brickTree} 
+          modifyBrick={modifyBrick} 
+          delBrick={delBrick}
+          edit={edit} />
       </Layout>
     </Layout>
     )
@@ -54,7 +71,8 @@ class App extends Component {
 export default connect(
   state => ({ 
     brickTree: state.brickTree,
-    dialog: state.dialog
+    dialog: state.dialog,
+    edit: state.edit
   }),
-  {addBrick, delBrick, getBrickTree, modifyBrick }
+  { addBrick, delBrick, getBrickTree, submitBrick, editBrick, modifyBrick }
 )(App);

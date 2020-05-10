@@ -19,7 +19,7 @@ export default class Dialog extends Component {
         placement="right"
         closable={false}
         visible={dialog.visible}>
-          <DialogForm type={dialog.type} handleSumbit={handleSumbit} />
+          <DialogForm dialog={dialog} handleSumbit={handleSumbit} />
       </Drawer>
     )
   }

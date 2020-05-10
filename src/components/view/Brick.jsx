@@ -6,12 +6,25 @@ import { Button } from 'antd'
 export default class Brick extends Component {
 
   static propTypes = {
-    brick: PropTypes.object.isRequired
+    brick: PropTypes.object.isRequired,
+    modifyBrick: PropTypes.func.isRequired,
+    edit: PropTypes.bool,
+  }
+
+  handleClick = (event) => {
+    const {edit, modifyBrick} = this.props
+    if (edit) {
+      let data = {
+        id: event.target.id,
+        name: event.target.name
+      }
+      modifyBrick(data)
+    }
   }
 
   render() {
-    const { brick } = this.props
-    const layout = brick.blocks.map((brick, index) => <Brick brick={brick} key={index} />)
+    const { brick, edit, modifyBrick } = this.props
+    const layout = brick.blocks.map((brick, index) => <Brick brick={brick} key={index} edit={edit} modifyBrick={modifyBrick} />)
     
     switch (brick.name) {
       case 'div':
@@ -32,7 +45,7 @@ export default class Brick extends Component {
         )
       case 'Button':
         return (
-          <Button>{brick.content}</Button>
+          <Button name="Button" id={this.props.brick.id} onClick={this.handleClick}>{brick.content}</Button>
         )
       default:
         return <div>Default</div>
